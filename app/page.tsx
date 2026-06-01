@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { createClient } from '@supabase/supabase-js';
 
 const supabase = createClient(
@@ -15,12 +15,12 @@ const [input, setInput] = useState('');
 const [loading, setLoading] = useState(false);
 const bottomRef = useRef<HTMLDivElement>(null);
 
-async function loadMessages() {
+const loadMessages = useCallback(async () => {
 const { data } = await supabase.from('messages').select('*').order('created_at', { ascending: true });
 if (data) setMessages(data as Message[]);
-}
+}, []);
 
-useEffect(() => { loadMessages(); }, []);
+useEffect(() => { loadMessages(); }, [loadMessages]);
 useEffect(() => { bottomRef.current?.scrollIntoView({ behavior: 'smooth' }); }, [messages]);
 
 async function sendMessage() {
@@ -69,4 +69,5 @@ placeholder="Escríbele a Lucas..."
 </main>
 );
 }
+
 
