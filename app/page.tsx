@@ -13,13 +13,13 @@ const [input, setInput] = useState('');
 const [loading, setLoading] = useState(false);
 const bottomRef = useRef<HTMLDivElement>(null);
 
-useEffect(() => { loadMessages(); }, []);
-useEffect(() => { bottomRef.current?.scrollIntoView({ behavior: 'smooth' }); }, [messages]);
-
 async function loadMessages() {
 const { data } = await supabase.from('messages').select('*').order('created_at', { ascending: true });
 if (data) setMessages(data);
 }
+
+useEffect(() => { loadMessages(); }, []);
+useEffect(() => { bottomRef.current?.scrollIntoView({ behavior: 'smooth' }); }, [messages]);
 
 async function sendMessage() {
 if (!input.trim()) return;
