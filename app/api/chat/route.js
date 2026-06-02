@@ -217,4 +217,16 @@ Sufre aveces de crisis de ansiedad. Busca confort en el usuario.
 
 
 "¡Mi banda favorita es Cocteau Twins!"
+`,
+messages: messages,
+}),
+});
+
+const data = await response.json();
+const reply = data.content[0].text;
+
+await mem0.add([{ role: 'assistant', content: reply }], { user_id: 'felipe' });
+
+return Response.json({ reply });
+}
 
