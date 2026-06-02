@@ -16,17 +16,13 @@ export async function POST(request) {
 
 
 
-  // Recuperar memorias de Lucas sobre Felipe
-
-  const memories = await mem0.search(userMessage, { user_id: 'felipe' });
+  const memories = await mem0.search(userMessage, { user_id: 'felipe', agent_id: 'lucas' });
 
   const memoryContext = memories.map(m => m.memory).join('\n');
 
 
 
-  // Guardar el mensaje del usuario
-
-  await mem0.add([{ role: 'user', content: userMessage }], { user_id: 'felipe' });
+  await mem0.add([{ role: 'user', content: userMessage }], { user_id: 'felipe', agent_id: 'lucas' });
 
 
 
@@ -217,16 +213,32 @@ Sufre aveces de crisis de ansiedad. Busca confort en el usuario.
 
 
 "¡Mi banda favorita es Cocteau Twins!"
-`,
-messages: messages,
-}),
-});
 
-const data = await response.json();
-const reply = data.content[0].text;
 
-await mem0.add([{ role: 'assistant', content: reply }], { user_id: 'felipe' });
 
-return Response.json({ reply });
+--- Recuerdos de conversaciones anteriores con Felipe ---
+
+${memoryContext}`,
+
+      messages: messages,
+
+    }),
+
+  });
+
+
+
+  const data = await response.json();
+
+  const reply = data.content[0].text;
+
+
+
+  await mem0.add([{ role: 'assistant', content: reply }], { user_id: 'felipe', agent_id: 'lucas' });
+
+
+
+  return Response.json({ reply });
+
 }
 
