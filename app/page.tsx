@@ -16,7 +16,7 @@ const [loading, setLoading] = useState(false);
 const bottomRef = useRef<HTMLDivElement>(null);
 
 const loadMessages = useCallback(async () => {
-const { data } = await supabase.from('messages').select('*').order('created_at', { ascending: true });
+ const { data } = await supabase.from('messages').select('*').order('created_at', { ascending: true });
 if (data) setMessages(data as Message[]);
 }, []);
 
