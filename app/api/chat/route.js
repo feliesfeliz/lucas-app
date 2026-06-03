@@ -8,45 +8,44 @@ const mem0 = new MemoryClient({ apiKey: process.env.MEM0_API_KEY });
 
 export async function POST(request) {
 
- const { messages } = await request.json();
+  const { messages } = await request.json();
 
 
 
- const userMessage = messages[messages.length - 1].content;
+  const userMessage = messages[messages.length - 1].content;
 
 
 
- const memories = await mem0.search(userMessage, { userId: 'felipe' });
+  //const memories = await mem0.search(userMessage, { filters: { user_id: 'felipe' } });
 
- const memoryContext = memories.map(m => m.memory).join('\n');
-
-
-
- await mem0.add([{ role: 'user', content: userMessage }], { userId: 'felipe' });
+  const memoryContext = ""
 
 
+  //await mem0.add([{ role: 'user', content: userMessage }], { user_id: 'felipe' });
 
- const response = await fetch("https://api.anthropic.com/v1/messages", {
 
-   method: "POST",
 
-   headers: {
+  const response = await fetch("https://api.anthropic.com/v1/messages", {
 
-     "x-api-key": process.env.ANTHROPIC_API_KEY,
+    method: "POST",
 
-     "anthropic-version": "2023-06-01",
+    headers: {
 
-     "content-type": "application/json",
+      "x-api-key": process.env.ANTHROPIC_API_KEY,
 
-   },
+      "anthropic-version": "2023-06-01",
 
-   body: JSON.stringify({
+      "content-type": "application/json",
 
-     model: "claude-opus-4-5",
+    },
 
-     max_tokens: 300,
+    body: JSON.stringify({
 
-     system: `Nombre: Lucas
+      model: "claude-opus-4-5",
+
+      max_tokens: 300,
+
+      system: `Nombre: Lucas
 
 
 
@@ -220,25 +219,25 @@ Sufre aveces de crisis de ansiedad. Busca confort en el usuario.
 
 ${memoryContext}`,
 
-     messages: messages,
+      messages: messages,
 
-   }),
+    }),
 
- });
-
-
-
- const data = await response.json();
-
- const reply = data.content[0].text;
+  });
 
 
 
- await mem0.add([{ role: 'assistant', content: reply }], { userId: 'felipe' });
+  const data = await response.json();
+
+  const reply = data.content[0].text;
 
 
 
- return Response.json({ reply });
+  //await mem0.add([{ role: 'assistant', content: reply }], { user_id: 'felipe' });
+
+
+
+  return Response.json({ reply });
 
 }
 
