@@ -17,24 +17,19 @@ export async function POST(request) {
   // Recuperar memorias
 
   let memoryContext = '';
+try {
+const memories = await mem0.search(userMessage, {
+filters: { user_id: 'felipe' },
+api_version: 'v2'
+});
+console.log('mem0 memories:', JSON.stringify(memories));
+memoryContext = memories.map(m => m.memory).join('\n');
+} catch (e) {
+console.error('mem0 search error:', e.message);
+}
 
-  try {
 
-    const memories = await mem0.search(userMessage, {
-
-      filters: { user_id: 'felipe' },
-
-      api_version: 'v2'
-
-    });
-
-    memoryContext = memories.map(m => m.memory).join('\n');
-
-  } catch (e) {
-
-    console.error('mem0 search error:', e);
-
-  }
+   
 
 
 
