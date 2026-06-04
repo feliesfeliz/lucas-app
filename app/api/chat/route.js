@@ -25,6 +25,7 @@ api_version: 'v2'
 console.log('mem0 memories:', JSON.stringify(memories));
 const results = memories.results || memories || [];
 memoryContext = results.map(m => m.memory).join('\n');
+} catch (e) {
 console.error('mem0 search error:', e.message);
 }
 
