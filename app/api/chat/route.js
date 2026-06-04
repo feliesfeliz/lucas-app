@@ -23,8 +23,8 @@ filters: { user_id: 'felipe' },
 api_version: 'v2'
 });
 console.log('mem0 memories:', JSON.stringify(memories));
-memoryContext = memories.map(m => m.memory).join('\n');
-} catch (e) {
+const results = memories.results || memories || [];
+memoryContext = results.map(m => m.memory).join('\n');
 console.error('mem0 search error:', e.message);
 }
 
