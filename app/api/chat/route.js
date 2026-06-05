@@ -64,7 +64,7 @@ console.error('mem0 search error:', e.message);
 
     body: JSON.stringify({
 
-      model: "claude-opus-4-5",
+      model: "claude-haiku-4-5-20251001",
 
       max_tokens: 300,
 
