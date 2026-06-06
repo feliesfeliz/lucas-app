@@ -18,17 +18,12 @@ export async function POST(request) {
 
   let memoryContext = '';
 try {
-const memories = await mem0.search(userMessage, {
-filters: { user_id: 'felipe' },
-api_version: 'v2'
-});
-console.log('mem0 memories:', JSON.stringify(memories));
+const memories = await mem0.getAll({ user_id: 'felipe' });
 const results = memories.results || memories || [];
 memoryContext = results.map(m => m.memory).join('\n');
 } catch (e) {
-console.error('mem0 search error:', e.message);
+console.error('mem0 getAll error:', e.message);
 }
-
 
    
 
