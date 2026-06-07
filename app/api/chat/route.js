@@ -18,7 +18,7 @@ export async function POST(request) {
 
   let memoryContext = '';
 try {
-const memories = await mem0.getAll({ user_id: 'felipe' });
+const memories = await mem0.getAll({ filters: { user_id: 'felipe' } });
 const results = memories.results || memories || [];
 memoryContext = results.map(m => m.memory).join('\n');
 } catch (e) {
