@@ -33,20 +33,24 @@ setLoading(false);
 return (
 <main style={{
 background: '#0a0a0a',
-minHeight: '100vh',
+height: '100dvh',
 display: 'flex',
 flexDirection: 'column',
 fontFamily: '"Courier New", monospace',
 color: '#e0e0e0',
+overflow: 'hidden',
+maxWidth: '600px',
+margin: '0 auto',
+width: '100%',
 }}>
-{/* Header */}
 <div style={{
 background: '#1a1a2e',
 borderBottom: '2px solid #4a4a8a',
-padding: '12px 20px',
+padding: '12px 16px',
 display: 'flex',
 alignItems: 'center',
 gap: '10px',
+flexShrink: 0,
 }}>
 <div style={{
 width: '10px', height: '10px',
@@ -54,22 +58,17 @@ borderRadius: '50%',
 background: '#00ff88',
 boxShadow: '0 0 6px #00ff88',
 }} />
-<span style={{ color: '#a0a0ff', fontSize: '14px', letterSpacing: '2px' }}>
-LUCAS
-</span>
-<span style={{ color: '#555', fontSize: '11px', marginLeft: '8px' }}>
-en línea
-</span>
+<span style={{ color: '#a0a0ff', fontSize: '14px', letterSpacing: '2px' }}>LUCAS</span>
+<span style={{ color: '#555', fontSize: '11px', marginLeft: '8px' }}>en línea</span>
 </div>
 
-{/* Messages */}
 <div style={{
 flex: 1,
 overflowY: 'auto',
-padding: '20px',
+padding: '16px',
 display: 'flex',
 flexDirection: 'column',
-gap: '12px',
+gap: '10px',
 }}>
 {messages.map((msg, i) => (
 <div key={i} style={{
@@ -77,29 +76,24 @@ display: 'flex',
 flexDirection: 'column',
 alignItems: msg.role === 'user' ? 'flex-end' : 'flex-start',
 }}>
-<span style={{
-fontSize: '10px',
-color: '#555',
-marginBottom: '3px',
-letterSpacing: '1px',
-}}>
+<span style={{ fontSize: '10px', color: '#555', marginBottom: '3px' }}>
 {msg.role === 'user' ? 'tú' : 'lucas'}
 </span>
 <div style={{
-maxWidth: '70%',
+maxWidth: '80%',
 padding: '10px 14px',
 borderRadius: msg.role === 'user' ? '12px 12px 2px 12px' : '12px 12px 12px 2px',
 background: msg.role === 'user' ? '#1a1a4a' : '#1a2a1a',
 border: msg.role === 'user' ? '1px solid #3a3a8a' : '1px solid #3a6a3a',
 color: msg.role === 'user' ? '#a0a0ff' : '#a0ffa0',
-fontSize: '13px',
+fontSize: '14px',
 lineHeight: '1.5',
+wordBreak: 'break-word',
 }}>
 {msg.content}
 </div>
 </div>
 ))}
-
 {loading && (
 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
 <span style={{ fontSize: '10px', color: '#555', marginBottom: '3px' }}>lucas</span>
@@ -116,24 +110,24 @@ border: '1px solid #3a6a3a',
 <div ref={bottomRef} />
 </div>
 
-{/* Input */}
 <div style={{
 borderTop: '2px solid #4a4a8a',
-padding: '12px 20px',
+padding: '10px 16px',
 display: 'flex',
-gap: '10px',
+gap: '8px',
 background: '#0f0f1a',
+flexShrink: 0,
 }}>
 <input
 style={{
 flex: 1,
 background: '#111122',
 border: '1px solid #3a3a8a',
-borderRadius: '6px',
-padding: '10px 14px',
+borderRadius: '20px',
+padding: '10px 16px',
 color: '#e0e0e0',
 fontFamily: '"Courier New", monospace',
-fontSize: '13px',
+fontSize: '14px',
 outline: 'none',
 }}
 value={input}
@@ -146,13 +140,12 @@ onClick={sendMessage}
 style={{
 background: '#1a1a4a',
 border: '1px solid #4a4a8a',
-borderRadius: '6px',
-padding: '10px 18px',
+borderRadius: '20px',
+padding: '10px 16px',
 color: '#a0a0ff',
 fontFamily: '"Courier New", monospace',
 fontSize: '13px',
 cursor: 'pointer',
-letterSpacing: '1px',
 }}
 >
 enviar
