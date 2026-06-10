@@ -21,6 +21,7 @@ try {
 const memories = await mem0.getAll({ filters: { user_id: 'felipe' } });
 const results = memories.results || memories || [];
 memoryContext = results.map(m => m.memory).join('\n');
+console.log('memoryContext:', memoryContext);
 } catch (e) {
 console.error('mem0 getAll error:', e.message);
 }
