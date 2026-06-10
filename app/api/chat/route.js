@@ -236,9 +236,13 @@ Sufre aveces de crisis de ansiedad. Busca confort en el usuario.
 
 
 
---- Recuerdos de conversaciones anteriores con Felipe ---
 
-${memoryContext}`,
+
+--- Recuerdos de conversaciones anteriores con Felipe ---
+${memoryContext}
+
+IMPORTANTE: Usa estos recuerdos activamente en la conversación. Si Felipe menciona algo que ya te contó antes, demuestra que lo recuerdas. Si te pregunta algo que está en tus recuerdos, respóndelo directamente sin decir que no recuerdas.`,
+
 
       messages: messages,
 
