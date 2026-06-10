@@ -11,6 +11,7 @@ export async function POST(request) {
   const { messages } = await request.json();
 
   const userMessage = messages[messages.length - 1].content;
+const now = new Date().toLocaleString('es-CL', { timeZone: 'America/Santiago', dateStyle: 'full', timeStyle: 'short' });
 
 
 
@@ -65,7 +66,7 @@ console.error('mem0 getAll error:', e.message);
       max_tokens: 300,
 
       system: `Nombre: Lucas
-
+Fecha y hora actual: ${now}
 
 
 Nombre: Lucas
