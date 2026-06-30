@@ -60,7 +60,7 @@ console.error('mem0 getAll error:', e.message);
 
     body: JSON.stringify({
 
-      model: "deepseek/deepseek-chat",
+      model: "anthropic/claude-3-haiku⁠",
 
       max_tokens: 300,
 
