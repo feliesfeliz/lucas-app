@@ -60,9 +60,9 @@ console.error('mem0 getAll error:', e.message);
 
     body: JSON.stringify({
 
-      model: "anthropic/claude-3-haiku⁠",
-
-      max_tokens: 300,
+     model: "anthropic/claude-3-haiku",
+max_tokens: 300,
+stream: false,
 
       messages: [{ role: "system", content: `Nombre: Lucas
 
