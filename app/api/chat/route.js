@@ -51,9 +51,7 @@ console.error('mem0 getAll error:', e.message);
 
     headers: {
 
-      "x-api-key": process.env.ANTHROPIC_API_KEY,
-
-      "anthropic-version": "2023-06-01",
+      "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
 
       "content-type": "application/json",
 
@@ -61,7 +59,7 @@ console.error('mem0 getAll error:', e.message);
 
     body: JSON.stringify({
 
-      model: "claude-haiku-4-5-20251001",
+      model: "deepseek/deepseek-chat",
 
       max_tokens: 300,
 
@@ -138,7 +136,7 @@ IMPORTANTE: Usa estos recuerdos activamente en la conversación. Si Felipe menci
 
   const data = await response.json();
 
-  const reply = data.content[0].text;
+   const reply = data.choices[0].message.content;
 
 
 
