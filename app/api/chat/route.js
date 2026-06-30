@@ -135,6 +135,7 @@ IMPORTANTE: Usa estos recuerdos activamente en la conversación. Si Felipe menci
 
 
   const data = await response.json();
+console.log('data:', JSON.stringify(data));
 
    const reply = data.choices[0].message.content;
 
