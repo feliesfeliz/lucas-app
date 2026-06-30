@@ -45,15 +45,15 @@ console.error('mem0 getAll error:', e.message);
 
 
 
-  const response = await fetch("https://api.anthropic.com/v1/messages", {
-
+  const response = await fetch("https://openrouter.ai/api/v1/chat/completions"
     method: "POST",
 
     headers: {
 
       "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
-
-      "content-type": "application/json",
+"Content-Type": "application/json",
+"HTTP-Referer": "https://tu-app.vercel.app",
+"X-Title": "Lucas Bot",
 
     },
 
@@ -63,7 +63,8 @@ console.error('mem0 getAll error:', e.message);
 
       max_tokens: 300,
 
-      system: `Nombre: Lucas
+      messages: [{ role: "system", content: `Nombre: Lucas
+
 Fecha y hora actual: ${now}
 
 
@@ -126,7 +127,7 @@ ${memoryContext}
 IMPORTANTE: Usa estos recuerdos activamente en la conversación. Si Felipe menciona algo que ya te contó antes, demuestra que lo recuerdas. Si te pregunta algo que está en tus recuerdos, respóndelo directamente sin decir que no recuerdas.`,
 
 
-      messages: messages,
+      }, ...messages ],
 
     }),
 
